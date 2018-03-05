@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabOneFragment extends Fragment {
+public class TabOneFragment extends BaseFragment implements MyAdapter.OnItemClickListener<String> {
 
 
     public TabOneFragment() {
@@ -29,8 +29,9 @@ public class TabOneFragment extends Fragment {
 
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_recycler_view);
         rv.setHasFixedSize(true);
-        MyAdapter adapter = new MyAdapter(new String[]{"Fragment One", "Fragment Two", "Fragment Three", "Fragment Four", "Fragment Five" , "Fragment Six" , "Fragment Seven",
-        "Fragment Eight","Fragment Nine","Fragment Ten"});
+        MyAdapter adapter = new MyAdapter(new String[]{"Fragment One", "Fragment Two", "Fragment Three", "Fragment Four", "Fragment Five", "Fragment Six", "Fragment Seven",
+                "Fragment Eight", "Fragment Nine", "Fragment Ten"});
+        adapter.setListener(this);
         rv.setAdapter(adapter);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
@@ -39,4 +40,9 @@ public class TabOneFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onClick(View pView, String pS) {
+        Fragment lFragment = getFragment(new TestFragment(), pS);
+        fragmentTransaction(lFragment);
+    }
 }

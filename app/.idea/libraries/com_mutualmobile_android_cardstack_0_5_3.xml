@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.mutualmobile.android:cardstack-0.5.3">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/cardstack-0.5.3.aar/f972e7e7cd5a3696e779c40f0ab698c8/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/cardstack-0.5.3.aar/f972e7e7cd5a3696e779c40f0ab698c8/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mutualmobile.android/cardstack/0.5.3/1398f8fe9088b41894c6f42cccc1665ce5ad599e/cardstack-0.5.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

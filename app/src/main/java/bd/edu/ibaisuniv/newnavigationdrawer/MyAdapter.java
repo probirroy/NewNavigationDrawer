@@ -13,11 +13,13 @@ import android.widget.TextView;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private String[] mDataset;
+    private OnItemClickListener mOnItemClickListener;
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         public CardView mCardView;
         public TextView mTextView;
-        public MyViewHolder(View v){
+
+        public MyViewHolder(View v) {
             super(v);
 
             mCardView = (CardView) v.findViewById(R.id.card_view);
@@ -27,24 +29,42 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     }
 
-    public MyAdapter(String[] myDataset){
+    public MyAdapter(String[] myDataset) {
         mDataset = myDataset;
     }
 
     @Override
-    public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item, parent, false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position){
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.mTextView.setText(mDataset[position]);
+        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null)
+                    mOnItemClickListener.onClick(v, mDataset[position]);
+            }
+        });
     }
 
     @Override
-    public int getItemCount() { return mDataset.length; }
+    public int getItemCount() {
+        return mDataset.length;
+    }
+
+    public void setListener(OnItemClickListener pListener) {
+        mOnItemClickListener = pListener;
+    }
+
+
+    public interface OnItemClickListener<T> {
+        void onClick(View pView, T t);
+    }
 
 
 }

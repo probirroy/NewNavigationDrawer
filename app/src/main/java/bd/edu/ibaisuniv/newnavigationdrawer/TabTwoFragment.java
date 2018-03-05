@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabTwoFragment extends Fragment {
+public class TabTwoFragment extends BaseFragment implements MyAdapter.OnItemClickListener<String> {
 
 
     public TabTwoFragment() {
@@ -31,6 +31,7 @@ public class TabTwoFragment extends Fragment {
         rv.setHasFixedSize(true);
        MyAdapter adapter = new MyAdapter(new String[]{"Example One", "Example Two", "Example Three", "Example Four", "Example Five" , "Example Six" , "Example Seven",
                 "Example Eight","Example Nine","Example Ten","Example Eleven"});
+        adapter.setListener(this);
         rv.setAdapter(adapter);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
@@ -39,4 +40,9 @@ public class TabTwoFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onClick(View pView, String pS) {
+        Fragment lFragment = getFragment(new TestFragment(), pS);
+        fragmentTransaction(lFragment);
+    }
 }
